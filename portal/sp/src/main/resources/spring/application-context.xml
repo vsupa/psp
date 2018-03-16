@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	                        http://www.springframework.org/schema/aop
+	                        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+	                        http://www.springframework.org/schema/context
+	                        http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	                        http://www.springframework.org/schema/util
+	                        http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- 加载配置文件 -->
+	<!-- properties配置 多个配置文件用逗号隔开 -->
+	<context:property-placeholder location="classpath:main.properties" system-properties-mode="OVERRIDE"/>
+	<util:properties id="settings" location="classpath:main.properties" />
+
+	<context:component-scan base-package="com.vsupa.invast.portal" />
+
+	<!-- 激活自动代理功能 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<bean id="weiXinService" class="com.vsupa.core.wx.WeiXinService">
+		<constructor-arg index="0" value="${weixin.appId}" />
+		<constructor-arg index="1" value="${weixin.appSecret}" />
+		<constructor-arg index="2" value="${weixin.token}" />
+		<constructor-arg index="3" value="${weixin.aesKey}" />
+	</bean>
+
+    <import resource="classpath:spring/spring-ehcache.xml" />
+
+    <import resource="classpath:spring/spring-redis.xml"/>
+
+    <import resource="classpath:spring/spring-dubbo.xml"/>
+
+    <import resource="classpath:spring/spring-bean.xml"/>
+</beans>

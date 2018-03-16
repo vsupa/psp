@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://code.alibabatech.com/schema/dubbo
+						http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="${dubbo.application.name}" owner="${dubbo.owner}" organization="${dubbo.organization}" />
+
+    <dubbo:registry protocol="zookeeper" address="${zookeeper.address}"/>
+
+    <dubbo:consumer timeout="${dubbo.service.timeout}" version="${dubbo.service.version}"/>
+
+    <dubbo:protocol name="dubbo" host="${dubbo.host}"/>
+
+    <!--<dubbo:monitor protocol="registry"/>-->
+
+    <!-- ========== Park-Service ========== -->
+    <!--<dubbo:reference id="buyerInfoService" interface="com.vsupa.ecsp.user.service.BuyerInfoService" check="false"/>-->
+
+
+</beans>

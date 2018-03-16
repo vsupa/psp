@@ -1,0 +1,159 @@
+<!--广告位-->
+#if($MallSystemContext.TemplatePageData.topAdvert)
+	#if($MallSystemContext.TemplatePageData.coverImgUrl)
+		<div class="oneHundrenPer navBg" style="background: url('${MallSystemContext.TemplatePageData.coverImgUrl}')">
+	#else
+		<div class="oneHundrenPer navBg" style="background: url('${MallSystemContext.ContextPath}/static/images/double11.png')">
+	#end
+		<div>
+			<span class="navBgSpan">${MallSystemContext.TemplatePageData.topAdvert.title}</span>
+			<!--<img src="static/images/false.png" class="shutUp" />-->
+		</div>
+	</div>
+#end
+
+<!--广告位底部-->
+<div class="navBottom oneHundrenPer">
+	<div class="minwidth clearfix">
+		<ul class="floatLeft clearfix">
+			#foreach( $topModule in $MallSystemContext.TemplatePageData.mallSetting.otherPlatformLinks)
+			<li>
+				<a href="${topModule.url}">${topModule.name}</a>
+			</li>
+			#end
+		</ul>
+		<ul class="floatRight">
+			<li>
+				<a href="${MallSystemContext.ContextPath}/service_provider_agency.html">入驻服务商</a>
+			</li>
+			<li>
+				<a href="${MallSystemContext.ContextPath}/carts.html">购物车 <span class="cartNumber"></span> 件</a>
+			</li>
+			<li>
+				<a href="${MallSystemContext.ContextPath}/personal_center_myorder.html">我的订单</a>
+			</li>
+			<li>
+				<a href="${MallSystemContext.ContextPath}/personal_center_message.html">消息</a>
+			</li>
+
+			<li class="loginparent" id="loginparent">
+				<!--<a href="javascript:void(0)" class="loginpass">${user.mobile}</a>
+				<a href="javascript:void(0)">退出</a>
+				<a href="${MallSystemContext.ContextPath}/login.html">登录</a>-->
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="main overInherit clearfix">
+	<div class="minwidth logo">
+		<a class="floatLeft middle" href="${MallSystemContext.ContextPath}/index.html">
+			<img src="${MallSystemContext.TemplatePageData.mallSetting.logoUrl}" alt="LOGO">
+		</a>
+		<ul class="floatRight overflowhidden middle">
+			<li><i class="zzrz"></i>服务资质全认证</li>
+			<li><i class="zfaq"></i>担保交易无顾虑</li>
+			<li><i class="zrfw"></i>运营规范保安全</li>
+			<li><i class="shwy"></i>专属服务一对一</li>
+			<li><img src="${MallSystemContext.TemplatePageData.mallSetting.wxGzhQRUrl}" style="width: 60px"></li>
+		</ul>
+	</div>
+	<div class="oneHundrenPer allServe">
+		<div class="minwidth overInherit clearfix">
+			<div class="floatLeft yspNaSub overInherit">
+				<a href="javascript:;"><span>服务分类</span></a>
+				<div class="yspNaSubSub" id="yspNaSubSubHiddenOrNot">
+					<div class="floatLeft overInherit yspISubNav">
+						<ul class="iNav overflowhidden overInherit">
+							#foreach($productIndexVOList in $MallSystemContext.TemplatePageData.categories)
+								<li>
+									<a href="javascript:void(0)">
+										<h4>${productIndexVOList.name}</h4></a>
+										#foreach($subProduct in $productIndexVOList.children)
+											#if($velocityCount <= 2)
+												<a href="javascript:void(0)"><span>${subProduct.name}</span></a>
+											#end
+										#end
+								</li>
+							#end
+						</ul>
+					</div>
+					<div class="floatLeft iSubNav">
+						#foreach($product in $MallSystemContext.TemplatePageData.categories)
+						#if($velocityCount == 1)
+						<div class="yspanimate">
+						#else
+						<div>
+						#end
+							<ul class="floatLeft iSubNavLe overflowhidden">
+								#foreach($item in $product.children)
+								<li>
+									<div>
+										<a href="javascript:void(0)">
+											<h5>${item.name}</h5>
+										</a>
+										<div class="clearfix">
+											#foreach($itemsub in $item.children)
+												<a href="${MallSystemContext.ContextPath}/serve_list.html?id=${itemsub.id}">${itemsub.name}</a>
+											#end
+										</div>
+									</div>
+								</li>
+								#end
+							</ul>
+						</div>
+						#end
+					</div>
+				</div>
+			</div>
+			<div class="floatLeft yspNavs">
+				<a href="index.html" class="active">首页</a>
+				#foreach( $navMenuList in $MallSystemContext.TemplatePageData.mallSetting.navigateMenus)
+					<li>
+						#if(${navMenuList.openInNewWindow})
+							<a href="${MallSystemContext.ContextPath}${navMenuList.url}" target="_blank">${navMenuList.name}
+						#else
+							<a href="${MallSystemContext.ContextPath}${navMenuList.url}">${navMenuList.name}
+						#end
+
+						#if($navMenuList.hasHotFlag)
+							<img class="hotNew" src="${MallSystemContext.ContextPath}/static/images/hot.png">
+						#end
+						</a>
+					</li>
+				#end
+				<span class="floatRight telephone middle"><img src="${MallSystemContext.ContextPath}/static/images/phone.png" style="vertical-align: text-top;" />&nbsp;${MallSystemContext.TemplatePageData.mallSetting.hotlinePhone}</span>
+			</div>
+			<div class="indexLogo absolute none">
+				<a href="#" class="loginImg" id="headLoginImg">
+					<!--#if($user.portrait)
+					<img src="${user.portrait}" alt="headImg_" />
+					#else
+					<img src="${MallSystemContext.ContextPath}/static/images/login_head_03.png" alt="headImg" />
+					#end-->
+				</a>
+				<div class="headLoginSection">
+					<!--#if($user)
+					<div class="successCarts clearfix" id="successLoginCarts">
+						<div>
+							<a href="${MallSystemContext.ContextPath}/personal_center_myorder.html?type=waitPay">待付款<span class="waitPay">0</span></a>
+						</div>
+						<div>
+							<a href="${MallSystemContext.ContextPath}/personal_center_myorder.html?type=waitSay" class="waitSay">待评价<span>0</span></a>
+						</div>
+						<div>
+							<a href="${MallSystemContext.ContextPath}/personal_center_myservice.html">我的服务<span class="myServe">0</span></a>
+						</div>
+					</div>
+					#else
+					<div class="loginBtn">
+						<a href="${MallSystemContext.ContextPath}/login.html">登录</a>
+						<a href="${MallSystemContext.ContextPath}/register.html">注册</a>
+					</div>
+					#end-->
+				</div>
+				<a href="${MallSystemContext.ContextPath}/service_provider_agency.html" class="serBuss middle"><img src="${MallSystemContext.ContextPath}/static/images/picbussiness.png"/>入驻服务商&nbsp;&nbsp;></a>
+			</div>
+		</div>
+	</div>
+</div>

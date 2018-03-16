@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.2.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+
+	<!-- 扫描 controller -->
+	<context:component-scan base-package="com.vsupa.ecsp.portal" />
+
+	<mvc:default-servlet-handler />
+	
+	<!-- 网站图标，注意 ！favicon.ico 放在 webapp 目录 -->
+	<!--<mvc:resources mapping="/favicon.ico" location="/favicon.ico" />-->
+
+	<!-- KISSO 初始化 -->
+	<bean id="kissoInit" class="com.baomidou.kisso.web.WebKissoConfigurer" init-method="initKisso">
+		<property name="ssoPropPath" value="sso.properties" />
+	</bean>
+
+	<mvc:interceptors>
+		<!-- SSO 拦截器 -->
+		<!-- path 对所有的请求拦截使用/**，对某个模块下的请求拦截使用：/myPath/* -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/show/**"/>
+			<mvc:exclude-mapping path="/home/**"/>
+			<mvc:exclude-mapping path="/wx/**"/>
+			<mvc:exclude-mapping path="/authorize/**"/>
+
+			<!--为了便于测试临时开放-->
+			<!--<mvc:exclude-mapping path="/sys/**"/>-->
+
+			<bean class="com.baomidou.kisso.web.interceptor.SSOSpringInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="fastJsonConfig" ref="fastJsonConfig"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+			</bean>
+
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8" />
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<bean id="fastJsonConfig" class="com.alibaba.fastjson.support.config.FastJsonConfig">
+		<property name="charset" value="UTF-8"/>
+		<property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+	</bean>
+
+	<!-- 支持上传文件 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="5120000"/>
+	</bean>
+</beans>

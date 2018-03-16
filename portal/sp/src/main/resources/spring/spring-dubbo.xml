@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://code.alibabatech.com/schema/dubbo
+						http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="${dubbo.application.name}" owner="${dubbo.owner}" organization="${dubbo.organization}" />
+
+    <dubbo:registry protocol="zookeeper" address="${zookeeper.address}"/>
+
+    <dubbo:consumer timeout="${dubbo.service.timeout}" version="${dubbo.service.version}"/>
+
+    <dubbo:protocol name="dubbo" host="${dubbo.host}"/>
+
+    <!--<dubbo:monitor protocol="registry"/>-->
+
+    <!-- ========== User-Service ========== -->
+    <dubbo:reference id="userAccountService" interface="com.vsupa.invast.user.service.UserAccountService" check="false"/>
+    <dubbo:reference id="userAccountAuthenticationService" interface="com.vsupa.invast.user.service.UserAccountAuthenticationService" check="false"/>
+
+    <!-- ========== Keeper-Service ========== -->
+    <dubbo:reference id="invoiceKeeperService" interface="com.vsupa.invast.keeper.service.InvoiceKeeperService" check="false"/>
+    <dubbo:reference id="invoiceTitleKeeperService" interface="com.vsupa.invast.keeper.service.InvoiceTitleKeeperService" check="false"/>
+
+
+</beans>

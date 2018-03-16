@@ -1,0 +1,317 @@
+﻿<!--
+ *  @author: A-Lin (Khuntoria)
+ *	@modified_time: 2017/12/22 19:00
+ *	@modified_reason: Animal protecting No Bug
+/**　　　┏┓　　　┏┓
+ * 　　┏┛┻━━━┛┻┓
+ * 　　┃　　　　　　　┃
+ * 　　┃　　　━　　　┃
+ * 　　┃　┳┛　┗┳　┃
+ * 　　┃　　　　　　　┃
+ * 　　┃　　　┻　　　┃
+ * 　　┃　　　　　　　┃
+ * 　　┗━┓　　　┏━┛
+ * 　　　　┃　　　┃
+ * 　　　　┃　　　┃
+ * 　　　　┃　　　┗━━━┓
+ * 　　　　┃　　　　　　　┣┓
+ * 　　　　┃　　　　　　　┏┛
+ * 　　　　┗┓┓┏━┳┓┏┛
+ * 　　　　　┃┫┫　┃┫┫
+ * 　　　　　┗┻┛　┗┻┛
+ */
+-->
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>云算盘</title>
+		<link rel="stylesheet" href="static/css/base.css" />
+		<link rel="stylesheet" href="static/css/header.css" />
+		<link rel="stylesheet" href="static/css/index.css" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="https://invast-dev-oss.obs.myhwclouds.com/static/js/jquery-1.8.3.min.js"></script>
+		<body>
+			<div id="vsupaHead">
+				#parse("/main/head.html")
+			</div>
+			<!-- 首屏 -->
+			<div class="main clearfix" id="indexPageOrNot">
+				<div class="lunhuan">
+					<div id="lunhuanback">
+						#foreach( $banner in $data.rollingBanners)
+						<p style=" background: url('${banner.coverImgUrl}') no-repeat scroll center center; opacity: 1;filter: alpha(opacity=100)">
+							<a href="${banner.url}" target="_blank"></a>
+						</p>
+						#end
+					</div>
+					<ul id='lunbonum'>
+						#foreach( $banner in $data.rollingBanners )
+							#if(${velocityCount}==1)
+							<li class='lunboone'></li>
+							#else
+							<li></li>
+							#end
+						#end
+					</ul>
+				</div>
+			</div>
+
+			<!--常用小工具-->
+			<div class="oneHundrenPer">
+				<div class="minwidth usualTool">
+					<ul class="usualToolUl">
+						<li>
+							<div>
+								<div class="toolTop">
+									<p><img src="static/images/toolsLeft.png" /> &nbsp;常用小工具</p>
+									<a href="#"><img src="static/images/toolsRight.png" /></a>
+								</div>
+								<ul class="toolBot">
+									<li>
+										<a href="#">企业所得税计算器</a>
+									</li>
+									<li>
+										<a href="#">个人所得税计算器</a>
+									</li>
+									<li>
+										<a href="#">增值税计算器</a>
+									</li>
+									<li>
+										<a href="#">营业税计算器</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						#foreach( $item in $data.promotionAdverts)
+							<li class="indgg">
+								<a href="${item.url}"><img src="${item.coverImgUrl}" alt="${item.title}" /></a>
+								<!--${item.title}-->
+							</li>
+						#end
+						<li class="bantopbto">
+							<div>
+								<div class="toolTop banTop">
+									<p><img src="static/images/toolsRight_2.png" /> &nbsp;政策快讯</p>
+									<a href="#"><img src="static/images/toolsRight.png" /></a>
+								</div>
+								<div class="banBott">
+									<ul class="toolBot" style="opacity: 1;filter: alpha(opacity=100);">
+										#foreach($item in $data.policyNewsList)
+											#if(${velocityCount} <= 4)
+												<li>
+													<a href="${item.url}">${item.title}</a>
+												</li>
+											#end
+										#end
+									</ul>
+									<ul class="toolBot">
+										#foreach($item in $data.policyNewsList)
+											#if(${velocityCount} > 4)
+												<li>
+													<a href="${item.url}">${item.title}</a>
+												</li>
+											#end
+										#end
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!--常用服务-->
+			<div class="oneHundrenPer">
+				<div class="minwidth">
+					<div class="usualServe"><img src="static/images/search.png" />常用服务</div>
+					<ul class="usualToolUl clearfix" id="usuallyService">
+						#foreach($item in $data.marketingProdBoards)
+							<li>
+								#if($item.locA)
+								<div class="transLine"></div>
+								<div class="serTop act">
+									<a href="${MallSystemContext.ContextPath}/detail/${item.locA.uuid}.html">
+										<p class="black">${item.locA.name}</p>
+										<span>
+											#if($item.locA.summary)
+												${item.locA.summary}
+											#end
+										</span>
+										<p class="money left">￥${item.locA.minPrice}&nbsp;<span>起</span></p>
+										<span class="opacity2">查看详情</span>
+									</a>
+								</div>
+								#end
+							<div class="serBot">
+								<ul class="clearfix">
+										#if($item.locB)
+											<li class="act one">
+												<a href="${MallSystemContext.ContextPath}/detail/${item.locB.uuid}.html">
+													<p>${item.locB.name}</p>
+													<span class="opacity1">
+														#if($item.locB.summary)
+															${item.locB.summary}
+														#end
+													</span>
+													<!--<span class="op0">查看详情</span>-->
+												</a>
+											</li>
+										#end
+										#if($item.locC)
+											<li class="act two">
+												<a href="${MallSystemContext.ContextPath}/detail/${item.locC.uuid}.html">
+													<p>${item.locC.name}</p>
+													<span class="opacity1">
+														#if($item.locC.summary)
+															${item.locC.summary}
+														#end
+													</span>
+													<!--<span class="op0">查看详情</span>-->
+												</a>
+											</li>
+										#end
+										#if($item.locD)
+											<li class="act three">
+												<a href="${MallSystemContext.ContextPath}/detail/${item.locD.uuid}.html">
+													<p>${item.locD.name}</p>
+													<span class="opacity1">
+														#if($item.locD.summary)
+															${item.locD.summary}
+														#end
+													</span>
+													<!--<span class="op0">查看详情</span>-->
+												</a>
+											</li>
+										#end
+										#if($item.locE)
+											<li class="act four">
+												<a href="${MallSystemContext.ContextPath}/detail/${item.locE.uuid}.html">
+													<p>${item.locE.name}</p>
+													<span class="opacity1">
+														#if($item.locE.summary)
+															${item.locE.summary}
+														#end
+													</span>
+													<!--<span class="op0">查看详情</span>-->
+												</a>
+											</li>
+										#end
+								</ul>
+							</div>
+							</li>
+						#end
+					</ul>
+				</div>
+			</div>
+
+			<!--热门服务商-->
+			<div class="oneHundrenPer">
+				<div class="minwidth hotServe" id="hot">
+					<div class="usualServe"><img src="static/images/hotFront.png">热门服务商</div>
+					<ul class="usualToolUl clearfix logo_right">
+						#foreach($item in $data.marketingProviders)
+						#if($item.authenCode == "OSO")
+						<li class="red">
+							#elseif($item.authenCode == "PSN")
+						<li class="yellow">
+							#elseif($item.authenCode == "ORG")
+						<li class="blue">
+							#else
+						<li>
+							#end
+							<div class="top">
+								<div class="floatLeft"><img src="${item.logoUrl}" alt="logo" /></div>
+								<div class="floatLeft topRight">
+									<p>
+										#if($item.authenCode == "PSN")
+										<a href="serve_homepage_person.html?id=${item.id}" style="padding: 0;color: #383838;">
+										#else
+										<a href="serve_homepage_agency.html?id=${item.id}" style="padding: 0;color: #383838;">
+										#end
+
+										#if($item.shortName)
+											${item.shortName}
+										#else
+											${item.fullName}
+										#end
+										</a>
+									</p>
+									<p>
+										接单量 <span>${item.salesCount}</span>
+									</p>
+									<p>
+										<!--#set($it=$item.pcCount * 100 / $item.commentCount)-->
+										<!--好评率 <span>$number.format("#0.00", $it)  %</span>-->
+										好评率 <span>$number.format("#0.00",${item.PcRate})%</span>
+									</p>
+								</div>
+							</div>
+							<div class="mid clearfix">
+								<ul class="clearfix">
+									#foreach($itm in $item.topSalesCategories)
+									#if(${velocityCount} <= 6)
+									<li>${itm.name}</li>
+									#end
+									#end
+								</ul>
+							</div>
+							<div class="bottom">
+								#if($item.advantage == "person_ertification")
+									<a href="serve_homepage_person.html?id=${item.id}">进入店铺</a>
+								#else
+									<a href="serve_homepage_agency.html?id=${item.id}">进入店铺</a>
+								#end
+							</div>
+						</li>
+						#end
+					</ul>
+				</div>
+			</div>
+
+			<!--财税自学堂-->
+			<!--<div class="oneHundrenPer">
+				<div class="minwidth hotServe study">
+					<div class="usualServe">财税自学堂</div>
+					<div class="tab">
+						<ul class="clearfix">
+							#foreach( $item in $dict.scmContentList )
+								#if(${velocityCount}==1)
+									<li class="floatLeft active">
+								#else
+									<li class="floatLeft">
+								#end
+								<span>${item.claName}</span></li>
+							#end
+						</ul>
+					</div>
+					<div class="changeTab">
+						#foreach( $item in $dict.scmContentList )
+							#if(${velocityCount}==1)
+							<ul class="usualToolUl tabBottom clearfix" style="opacity: 1;filter: alpha(opacity=100)">
+							#else
+							<ul class="usualToolUl tabBottom clearfix">
+							#end
+								#foreach( $iteList in $item.scmContentList )
+									#if(${velocityCount} <= 8)
+									<li>
+										<a href="#">
+											<div><img src="images/studypic01.png" alt="image" /></div>
+											<div class="bottom">${iteList.title}</div>
+										</a>
+									</li>
+									#end
+								#end
+							</ul>
+						#end
+					</div>
+				</div>
+			</div>-->
+			<!--公共底部-->
+			<div id="footAll">
+				#parse("/main/foot.html")
+			</div>
+		</body>
+		<script type="text/javascript" src="static/js/menus.js"></script>
+		<script type="text/javascript" src="static/js/index.js"></script>
+		<script src="https://invast-dev-oss.obs.myhwclouds.com/static/js/jquery.cookie.js"></script>
+</html>

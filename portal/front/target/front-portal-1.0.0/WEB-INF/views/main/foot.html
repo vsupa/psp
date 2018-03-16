@@ -1,0 +1,99 @@
+<div class="oneHundrenPer footer">
+	<div class="minwidth">
+		<div class="servrID">
+			<ul class="clearfix">
+				<li>服务资质全认证</li>
+				<li>担保交易无顾虑</li>
+				<li>运营规范保安全</li>
+				<li>专属服务一对一</li>
+			</ul>
+		</div>
+		<div class="clearfix">
+			<div class="one">
+				<div>
+					<img src="${MallSystemContext.TemplatePageData.mallSetting.wxGzhQRUrl}" alt="" />
+					<div>
+						<p>关注公众号</p>
+						<p>掌握订单实时状态 获取财税最新资讯</p>
+					</div>
+				</div>
+				<div>
+					<img src="${MallSystemContext.TemplatePageData.mallSetting.wxGzhQRUrl}" alt="" />
+					<div>
+						<p>下载云算盘app</p>
+						<p>服务进度实时查询 收支明细清晰明了 </p>
+					</div>
+				</div>
+			</div>
+			<div class="two">
+				<p>服务热线</p>
+				<p>${MallSystemContext.TemplatePageData.mallSetting.hotlinePhone}</p>
+				<p>${MallSystemContext.TemplatePageData.mallSetting.hotlineSchedule}</p>
+			</div>
+			<div class="three clearfix">
+				<ul>
+					<p>
+						<a href="javascript:void(0)">帮助中心</a>
+					</p>
+					#foreach( $banner in $MallSystemContext.TemplatePageData.mallSetting.helpCenterLinks )
+					<li>
+						<a href="${banner.url}">${banner.name}</a>
+					</li>
+					#end
+				</ul>
+				<ul>
+					<p>
+						<a href="javascript:void(0)">交易保障</a>
+					</p>
+					#foreach( $banner in $MallSystemContext.TemplatePageData.mallSetting.guaranteeLinks )
+					<li>
+						<a href="${banner.url}">${banner.name}</a>
+					</li>
+					#end
+				</ul>
+				<ul>
+					<p>
+						<a href="javascript:void(0)">关于我们</a>
+					</p>
+					#foreach( $banner in $MallSystemContext.TemplatePageData.mallSetting.aboutUsLinks )
+						<li>
+							<a href="${banner.url}">${banner.name}</a>
+						</li>
+					#end
+				</ul>
+				<ul class="last">
+					<p>
+						<a href="javascript:void(0)">友情链接</a>
+					</p>
+					#foreach( $banner in $MallSystemContext.TemplatePageData.mallSetting.helpfulLinks )
+					<li>
+						<a href="${banner.url}">${banner.name}</a>
+					</li>
+					#end
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="foot">
+	${MallSystemContext.TemplatePageData.mallSetting.copyrightDeclaration}
+</div>
+<div class="modalAllTips modalTipSClick"></div>
+<!--<div id="loader-wrapper" class="loader-wrapper">
+	<div id="loader"></div>
+	&lt;!&ndash;<div class="loader-section section-left"></div>&ndash;&gt;
+	&lt;!&ndash;<div class="loader-section section-right"></div>&ndash;&gt;
+	&lt;!&ndash;<div class="load_title">正在加载LoveFeel站点<br><span>V1.0</span></div>&ndash;&gt;
+</div>-->
+
+<div class="onlineQuestion">
+	<ul class="relative">
+		<span class="cartNumber absolute">0</span>
+		<li><a href="javascript:void(0)" class=""><div class="middle"><img src="${MallSystemContext.ContextPath}/static/images/questiononline.png"/></div><div>在线咨询</div></a></li>
+		<li><a href="${MallSystemContext.ContextPath}/carts.html"><div class="middle relative"><img src="${MallSystemContext.ContextPath}/static/images/cartsnothing.png"/></div><div><span>购物车</span></div></a></li>
+		<li><a href="javascript:void(0)"><div class="middle"><img src="${MallSystemContext.ContextPath}/static/images/support.png"/></div><div><span>技术支持</span></div></a></li>
+		<li><a href="javascript:void(0)" class="scrollTop middle"><div class="middle"><img src="${MallSystemContext.ContextPath}/static/images/goup.png"/></div><div><span>回到顶部</span></div></a></li>
+	</ul>
+</div>

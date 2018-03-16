@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.vsupa.psp</groupId>
+        <artifactId>parent</artifactId>
+		<version>1.0.0</version>
+        <relativePath>../../../parent/</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>war</packaging>
+    <artifactId>park-service</artifactId>
+
+	<name>park-service</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.vsupa.psp</groupId>
+			<artifactId>park-api</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+        <dependency>
+            <groupId>com.vsupa.psp</groupId>
+            <artifactId>common-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <!-- 打包时替换的内容 -->
+                            <directory>src/main/resources/${package.environment}</directory>
+                            <targetPath>WEB-INF/classes</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <!-- 指定 src/main/resources那些为资源文件 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>dev/</exclude>
+                    <exclude>prod/</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
+</project>
