@@ -25,7 +25,7 @@
                 <configuration>
                     <webResources>
                         <resource>
-                            <!-- ´ò°üÊ±Ìæ»»µÄÄÚÈÝ -->
+                            <!-- æ‰“åŒ…æ—¶æ›¿æ¢çš„å†…å®¹ -->
                             <directory>src/main/resources/${package.environment}</directory>
                             <targetPath>WEB-INF/classes</targetPath>
                             <filtering>true</filtering>
@@ -36,7 +36,7 @@
         </plugins>
 
         <resources>
-            <!-- Ö¸¶¨ src/main/resourcesÄÇÐ©Îª×ÊÔ´ÎÄ¼þ -->
+            <!-- æŒ‡å®š src/main/resourcesé‚£äº›ä¸ºèµ„æºæ–‡ä»¶ -->
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>

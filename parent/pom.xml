@@ -379,6 +379,14 @@
 			<properties>
 				<package.environment> </package.environment>
 			</properties>
+			<!-- nexus私服配置 -->  
+			<repositories>  
+				<repository>  
+					<id>nexus</id>  
+					<name>Nexus Repository</name>  
+					<url>http://maven.dev.7linkshop.com:15887/repository/maven-public/</url>  
+				</repository>  
+			</repositories>  
 		</profile>
         <profile>
             <id>dev</id>
@@ -388,6 +396,14 @@
             <properties>
                 <package.environment>dev</package.environment>
             </properties>
+			<!-- nexus私服配置 -->  
+			<repositories>  
+				<repository>  
+					<id>nexus</id>  
+					<name>Nexus Repository</name>  
+					<url>http://maven.dev.7linkshop.com:15887/repository/maven-public/</url>  
+				</repository>  
+			</repositories>  
         </profile>
         <profile>
             <id>prod</id>
@@ -397,6 +413,14 @@
             <properties>
                 <package.environment>prod</package.environment>
             </properties>
+			<!-- nexus私服配置 -->  
+			<repositories>  
+				<repository>  
+					<id>nexus</id>  
+					<name>Nexus Repository</name>  
+					<url>http://maven.dev.7linkshop.com:15887/repository/maven-public/</url>  
+				</repository>  
+			</repositories>  
         </profile>
     </profiles>
 
