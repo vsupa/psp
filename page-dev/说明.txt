@@ -1,0 +1,4 @@
+（在工程顶级目录运行）
+下载依赖库：cnpm i
+启动应用：npm start
+打包应用：npm run build
