@@ -1,4 +1,4 @@
-package com.vsupa.invast.client.invoice;
+package com.vsupa.client.invoice;
 
 import java.io.Serializable;
 

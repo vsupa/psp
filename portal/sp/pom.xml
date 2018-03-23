@@ -14,7 +14,11 @@
 	<name>sp-portal</name>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.vsupa.psp</groupId>
+            <artifactId>common-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
