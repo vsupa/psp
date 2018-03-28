@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vsupa.psp.park.dao.GardenIntoRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.vsupa.psp.park.entity.GardenIntoRecord">
+        <id column="id" property="id" />
+        <result column="garden_id" property="gardenId" />
+        <result column="org_id" property="orgId" />
+        <result column="buy_type" property="buyType" />
+        <result column="buy_post_count" property="buyPostCount" />
+        <result column="buy_area_count" property="buyAreaCount" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="user_id" property="userId" />
+        <result column="buy_time" property="buyTime" />
+        <result column="buy_state" property="buyState" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, garden_id AS gardenId, org_id AS orgId, buy_type AS buyType, buy_post_count AS buyPostCount, buy_area_count AS buyAreaCount, start_time AS startTime, end_time AS endTime, user_id AS userId, buy_time AS buyTime, buy_state AS buyState, remark
+    </sql>
+
+</mapper>

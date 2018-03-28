@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vsupa.psp.park.dao.GardenActivityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.vsupa.psp.park.entity.GardenActivity">
+        <id column="id" property="id" />
+        <result column="act_name" property="actName" />
+        <result column="cover_img" property="coverImg" />
+        <result column="act_info" property="actInfo" />
+        <result column="act_desc" property="actDesc" />
+        <result column="advice_flag" property="adviceFlag" />
+        <result column="org_id" property="orgId" />
+        <result column="user_count" property="userCount" />
+        <result column="start_time" property="startTime" />
+        <result column="address" property="address" />
+        <result column="act_state" property="actState" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, act_name AS actName, cover_img AS coverImg, act_info AS actInfo, act_desc AS actDesc, advice_flag AS adviceFlag, org_id AS orgId, user_count AS userCount, start_time AS startTime, address, act_state AS actState, create_time AS createTime
+    </sql>
+
+</mapper>

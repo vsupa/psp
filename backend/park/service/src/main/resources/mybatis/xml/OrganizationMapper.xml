@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vsupa.psp.park.dao.OrganizationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.vsupa.psp.park.entity.Organization">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="cover_img" property="coverImg" />
+        <result column="org_imgs" property="orgImgs" />
+        <result column="logo_img" property="logoImg" />
+        <result column="org_info" property="orgInfo" />
+        <result column="org_desc" property="orgDesc" />
+        <result column="business_license" property="businessLicense" />
+        <result column="create_time" property="createTime" />
+        <result column="state" property="state" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, cover_img AS coverImg, org_imgs AS orgImgs, logo_img AS logoImg, org_info AS orgInfo, org_desc AS orgDesc, business_license AS businessLicense, create_time AS createTime, state
+    </sql>
+
+</mapper>
