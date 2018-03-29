@@ -6,16 +6,19 @@
     <resultMap id="BaseResultMap" type="com.vsupa.psp.park.entity.UserEvaluate">
         <id column="id" property="id" />
         <result column="user_id" property="userId" />
-        <result column="score" property="score" />
+        <result column="env_rate" property="sumOfenvRate" />
+        <result column="price_rate" property="priceRate" />
+        <result column="traffic_rate" property="trafficRate" />
         <result column="comment" property="comment" />
         <result column="obj_id" property="objId" />
         <result column="obj_type" property="objType" />
         <result column="create_time" property="createTime" />
+        <result column="state" property="state" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, user_id AS userId, score, comment, obj_id AS objId, obj_type AS objType, create_time AS createTime
+        id, user_id AS userId, env_rate AS sumOfenvRate, price_rate AS priceRate, traffic_rate AS trafficRate, comment, obj_id AS objId, obj_type AS objType, create_time AS createTime, state
     </sql>
 
 </mapper>

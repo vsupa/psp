@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author Maxwell.Lee
- * @since 2018-03-28
+ * @since 2018-03-29
  */
 public interface GardenInfoMapper extends BaseMapper<GardenInfo> {
 

@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Maxwell.Lee
- * @since 2018-03-28
+ * @since 2018-03-29
  */
 @TableName("user_evaluate")
 public class UserEvaluate implements Serializable {
@@ -24,7 +24,21 @@ public class UserEvaluate implements Serializable {
 	private Long id;
 	@TableField("user_id")
 	private Long userId;
-	private Integer score;
+    /**
+     * 环境评价星级
+     */
+	@TableField("env_rate")
+	private Integer envRate;
+    /**
+     * 价格评价星级
+     */
+	@TableField("price_rate")
+	private Integer priceRate;
+    /**
+     * 交通评价星级
+     */
+	@TableField("traffic_rate")
+	private Integer trafficRate;
 	private String comment;
 	@TableField("obj_id")
 	private Long objId;
@@ -32,6 +46,7 @@ public class UserEvaluate implements Serializable {
 	private Integer objType;
 	@TableField("create_time")
 	private Date createTime;
+	private Integer state;
 
 
 	public Long getId() {
@@ -50,12 +65,28 @@ public class UserEvaluate implements Serializable {
 		this.userId = userId;
 	}
 
-	public Integer getScore() {
-		return score;
+	public Integer getEnvRate() {
+		return envRate;
 	}
 
-	public void setScore(Integer score) {
-		this.score = score;
+	public void setEnvRate(Integer envRate) {
+		this.envRate = envRate;
+	}
+
+	public Integer getPriceRate() {
+		return priceRate;
+	}
+
+	public void setPriceRate(Integer priceRate) {
+		this.priceRate = priceRate;
+	}
+
+	public Integer getTrafficRate() {
+		return trafficRate;
+	}
+
+	public void setTrafficRate(Integer trafficRate) {
+		this.trafficRate = trafficRate;
 	}
 
 	public String getComment() {
@@ -90,16 +121,27 @@ public class UserEvaluate implements Serializable {
 		this.createTime = createTime;
 	}
 
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
 	@Override
 	public String toString() {
 		return "UserEvaluate{" +
 			", id=" + id +
 			", userId=" + userId +
-			", score=" + score +
+			", envRate=" + envRate +
+			", priceRate=" + priceRate +
+			", trafficRate=" + trafficRate +
 			", comment=" + comment +
 			", objId=" + objId +
 			", objType=" + objType +
 			", createTime=" + createTime +
+			", state=" + state +
 			"}";
 	}
 }

@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Maxwell.Lee
- * @since 2018-03-28
+ * @since 2018-03-29
  */
 @TableName("garden_info")
 public class GardenInfo implements Serializable {

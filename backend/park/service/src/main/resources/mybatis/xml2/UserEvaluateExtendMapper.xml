@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vsupa.psp.park.dao2.UserEvaluateExtendMapper">
+
+    <resultMap id="UserEvaluationSummaryResultMap" type="com.vsupa.psp.park.vo.UserEvaluationSummaryVo">
+        <result column="obj_id" property="objId" />
+        <result column="obj_type" property="objType" />
+        <result column="sum_env_rate" property="sumOfEnvRate" />
+        <result column="sum_price_rate" property="sumOfPriceRate" />
+        <result column="sum_traffic_rate" property="sumOfTrafficRate" />
+        <result column="count" property="count" />
+    </resultMap>
+
+    <select id="selectSummaryByObjIdAndObjTypeAndState" resultMap="UserEvaluationSummaryResultMap">
+        SELECT  t.obj_id, t.obj_type, SUM(t.env_rate) AS sum_env_rate, SUM(t.price_rate) AS sum_price_rate,
+                SUM(t.traffic_rate) AS sum_traffic_rate, COUNT(t.id) AS count
+        FROM user_evaluate t
+        WHERE t.obj_id = #{objId} AND t.obj_type = #{objType} AND t.state = #{state}
+    </select>
+
+    <resultMap id="UserEvaluationVoResultMap" type="com.vsupa.psp.park.vo.UserEvaluationVo">
+        <result column="obj_id" property="objId" />
+        <result column="obj_type" property="objType" />
+    </resultMap>
+
+    <select id="selectByObjIdAndObjTypeAndStateOByCreateTimeDesc" resultMap="UserEvaluationVoResultMap">
+        SELECT t.*
+        FROM user_evaluate t
+        WHERE t.obj_id = #{objId} AND t.obj_type = #{objType} AND t.state = #{state}
+        ORDER BY t.create_time DESC
+    </select>
+
+</mapper>

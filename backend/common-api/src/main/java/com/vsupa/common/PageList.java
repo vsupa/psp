@@ -41,14 +41,14 @@ public class PageList<T> implements Serializable {
         this.totalCount = page.getTotal();
         this.pageSize = page.getSize();
         this.pageNo = page.getCurrent();
-        this.items = items;
+        this.items = ((items == null || items.isEmpty()) ? null : items);
     }
 
     public PageList(int pageNo, int pageSize, int totalCount, List<T> items) {
         this.totalCount = totalCount;
         this.pageSize = pageSize;
         this.pageNo = pageNo;
-        this.items = items;
+        this.items = ((items == null || items.isEmpty()) ? null : items);
     }
 
     public <R> List<R> mapAndCollect(Function<T, R> mapper) {
