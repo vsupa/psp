@@ -16,11 +16,13 @@ public interface UserEvaluationService {
 
     /**
      * 提交评价评论；
+     * @param objId     目标对象ID，（必要）；
+     * @param objType   目标对象类型，（必要）；
      * @param userId    用户ID，（必要）；
      * @param evalVo    评价评论内容，（必要）；
      * @return  如果成功，返回评价评论记录ID；
      */
-    Long submitEvaluation(Long userId, UserEvaluationPVo evalVo);
+    Long submitEvaluation(Long objId, Integer objType, Long userId, UserEvaluationPVo evalVo);
 
     /**
      * 获取指定实体的用户评价评论概览数据；

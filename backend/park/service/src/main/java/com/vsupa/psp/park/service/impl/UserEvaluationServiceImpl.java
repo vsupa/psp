@@ -45,11 +45,11 @@ public class UserEvaluationServiceImpl implements UserEvaluationService {
      * @return 如果成功，返回评价评论记录ID；
      */
     @Override   @Transactional(propagation = Propagation.REQUIRED)
-    public Long submitEvaluation(Long userId, UserEvaluationPVo evalVo) {
+    public Long submitEvaluation(Long objId, Integer objType, Long userId, UserEvaluationPVo evalVo) {
         if (userId == null || evalVo == null) {
             throw new IllegalArgumentException("参数不全。[0x02UES4264]");
         }
-        if (!evalVo.checkRequiredFields()) {
+        if (evalVo.getComment() == null) {
             throw new IllegalArgumentException("参数不完整。[0x02UES4665]");
         }
 
@@ -57,8 +57,8 @@ public class UserEvaluationServiceImpl implements UserEvaluationService {
 
         entity.setComment(evalVo.getComment());
         entity.setUserId(userId);
-        entity.setObjId(evalVo.getObjId());
-        entity.setObjType(evalVo.getObjType());
+        entity.setObjId(objId);
+        entity.setObjType(objType);
         entity.setComment(evalVo.getComment());
         entity.setEnvRate(evalVo.getEvnRate());
         entity.setPriceRate(evalVo.getPriceRate());

@@ -19,8 +19,15 @@
     </select>
 
     <resultMap id="UserEvaluationVoResultMap" type="com.vsupa.psp.park.vo.UserEvaluationVo">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
         <result column="obj_id" property="objId" />
         <result column="obj_type" property="objType" />
+        <result column="env_rate" property="envRate" />
+        <result column="price_rate" property="priceRate" />
+        <result column="traffic_rate" property="trafficRate" />
+        <result column="comment" property="comment" />
+        <result column="create_time" property="createTime" />
     </resultMap>
 
     <select id="selectByObjIdAndObjTypeAndStateOByCreateTimeDesc" resultMap="UserEvaluationVoResultMap">

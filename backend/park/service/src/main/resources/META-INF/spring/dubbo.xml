@@ -19,7 +19,7 @@
 	<dubbo:application name="${dubbo.application.name}" owner="${dubbo.owner}" organization="${dubbo.organization}"
 					   logger="slf4j"/>
 
-	<dubbo:registry protocol="zookeeper" address="${zookeeper.address}" file="${dubbo.registry.cache}"/>
+	<dubbo:registry protocol="zookeeper" address="${zookeeper.address}" file="${dubbo.registry.cache}" />
     
 	<dubbo:provider timeout="${dubbo.service.timeout}" version="${dubbo.service.version}"/>
 
@@ -27,12 +27,7 @@
 	
  	<dubbo:protocol name="dubbo" host="${dubbo.host}" port="${dubbo.port}" payload="104857600" serialization="compactedjava"/>
 
-	<!--<dubbo:monitor protocol="registry" />-->
+    <dubbo:service interface="com.vsupa.psp.park.service.UserEvaluationService" ref="userEvaluationServiceImpl" protocol="dubbo"/>
 
-	<!--
-    <dubbo:service interface="com.vsupa.ecsp.user.service.BuyerInfoService" ref="buyerInfoServiceImpl" protocol="dubbo"/>
-    <dubbo:service interface="com.vsupa.ecsp.user.service.UserAccountService" ref="userAccountServiceImpl" protocol="dubbo"/>
-    <dubbo:service interface="com.vsupa.ecsp.user.service.UserAuthorizeService" ref="userAuthorizeServiceImpl" protocol="dubbo"/>
-	-->
 
 </beans>

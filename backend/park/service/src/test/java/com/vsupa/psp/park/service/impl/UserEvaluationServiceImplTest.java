@@ -13,10 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.List;
-
-import static org.junit.Assert.*;
-
 /**
  * @author Maxwell.Lee
  * @date 2018-03-29 10:55
@@ -35,52 +31,42 @@ public class UserEvaluationServiceImplTest {
         Long    rst;
 
         vo = new UserEvaluationPVo();
-        vo.setObjId(1001L);
-        vo.setObjType(1);
         vo.setComment("测试消息1");
         vo.setEvnRate(3);
 
-        rst = service.submitEvaluation(101L, vo);
+        rst = service.submitEvaluation(1001L, 1, 101L, vo);
         Assert.assertNotNull(rst);
 
         vo = new UserEvaluationPVo();
-        vo.setObjId(1001L);
-        vo.setObjType(1);
         vo.setComment("测试消息2");
         vo.setPriceRate(4);
 
-        rst = service.submitEvaluation(102L, vo);
+        rst = service.submitEvaluation(1001L, 1, 102L, vo);
         Assert.assertNotNull(rst);
 
         vo = new UserEvaluationPVo();
-        vo.setObjId(1001L);
-        vo.setObjType(1);
         vo.setComment("测试消息3");
         vo.setTrafficRate(5);
 
-        rst = service.submitEvaluation(103L, vo);
+        rst = service.submitEvaluation(1001L, 1, 103L, vo);
         Assert.assertNotNull(rst);
 
         vo = new UserEvaluationPVo();
-        vo.setObjId(1001L);
-        vo.setObjType(1);
         vo.setComment("测试消息4");
         vo.setEvnRate(1);
         vo.setPriceRate(2);
         vo.setTrafficRate(3);
 
-        rst = service.submitEvaluation(104L, vo);
+        rst = service.submitEvaluation(1001L, 1, 104L, vo);
         Assert.assertNotNull(rst);
 
         vo = new UserEvaluationPVo();
-        vo.setObjId(1002L);
-        vo.setObjType(1);
         vo.setComment("测试消息5");
         vo.setEvnRate(1);
         vo.setPriceRate(2);
         vo.setTrafficRate(3);
 
-        rst = service.submitEvaluation(105L, vo);
+        rst = service.submitEvaluation(1002L, 1, 105L, vo);
         Assert.assertNotNull(rst);
     }
 

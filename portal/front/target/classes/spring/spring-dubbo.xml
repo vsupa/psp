@@ -15,10 +15,11 @@
 
     <dubbo:protocol name="dubbo" host="${dubbo.host}"/>
 
-    <!--<dubbo:monitor protocol="registry"/>-->
-
     <!-- ========== Park-Service ========== -->
-    <!--<dubbo:reference id="buyerInfoService" interface="com.vsupa.ecsp.user.service.BuyerInfoService" check="false"/>-->
+    <dubbo:reference id="userEvaluationService" interface="com.vsupa.psp.park.service.UserEvaluationService" check="false"/>
+
+    <!-- ========== 平台服务：User-Service ========== -->
+    <dubbo:reference id="userAccountService" interface="com.vsupa.ecsp.user.service.UserAccountService" check="false"/>
 
 
 </beans>

@@ -30,6 +30,25 @@ public class UserEvaluationVo extends ServiceAbstractVo {
 
     private Date    createTime;
 
+    public UserEvaluationVo() {
+
+    }
+
+    public UserEvaluationVo(UserEvaluationVo other) {
+        if (other == null) {
+            throw new IllegalArgumentException("参数不全。[0x04UEV3558]");
+        }
+        this.id = other.id;
+        this.userId = other.userId;
+        this.objId = other.objId;
+        this.objType = other.objType;
+        this.envRate = other.envRate;
+        this.priceRate = other.priceRate;
+        this.trafficRate = other.trafficRate;
+        this.comment = other.comment;
+        this.createTime = other.createTime;
+    }
+
     public Long getId() {
         return id;
     }

@@ -8,7 +8,7 @@ import com.vsupa.common.ServiceAbstractVo;
  * @date 2018-03-29 9:32
  * @since   1.0.0
  */
-public class UserEvaluationSummaryVo extends ServiceAbstractVo{
+public class UserEvaluationSummaryVo extends ServiceAbstractVo {
     private static final long serialVersionUID = 2061679642659852478L;
 
     /**
@@ -45,6 +45,47 @@ public class UserEvaluationSummaryVo extends ServiceAbstractVo{
      * 评价评论条数；
      */
     private Integer     count;
+
+    public UserEvaluationSummaryVo() {
+
+    }
+
+    public UserEvaluationSummaryVo(UserEvaluationSummaryVo other) {
+        if (other == null) {
+            throw new IllegalArgumentException("参数不全。[0x04UESV5164]");
+        }
+        this.objId = other.objId;
+        this.objType = other.objType;
+        this.sumOfEnvRate = other.sumOfEnvRate;
+        this.sumOfPriceRate = other.sumOfPriceRate;
+        this.sumOfTrafficRate = other.sumOfTrafficRate;
+        this.score = other.score;
+        this.count = other.count;
+    }
+
+    /**
+     * 环境评价平均星级；
+     * @return  空值或[1,5]
+     */
+    public Integer getAvgEnvRate() {
+        return (sumOfEnvRate != null && count > 0 ? (int)Math.round((double)sumOfEnvRate / count) : null);
+    }
+
+    /**
+     * 价格评价平均星级；
+     * @return  空值或[1,5]
+     */
+    public Integer getPriceEnvRate() {
+        return (sumOfPriceRate != null && count > 0 ? (int)Math.round((double)sumOfPriceRate / count) : null);
+    }
+
+    /**
+     * 交通评价平均星级；
+     * @return  空值或[1,5]
+     */
+    public Integer getTrafficEnvRate() {
+        return (sumOfTrafficRate != null && count > 0 ? (int)Math.round((double)sumOfTrafficRate / count) : null);
+    }
 
     public Long getObjId() {
         return objId;

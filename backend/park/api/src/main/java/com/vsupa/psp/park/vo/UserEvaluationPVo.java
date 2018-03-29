@@ -13,10 +13,6 @@ import java.util.List;
 public class UserEvaluationPVo extends ServiceAbstractVo {
     private static final long serialVersionUID = 5389688959895418862L;
 
-    private Long    objId;
-
-    private Integer objType;
-
     private Integer evnRate;
 
     private Integer priceRate;
@@ -26,26 +22,6 @@ public class UserEvaluationPVo extends ServiceAbstractVo {
     private String  comment;
 
     private List<String>    tags;
-
-    public boolean  checkRequiredFields() {
-        return (objId != null && objType != null && comment != null);
-    }
-
-    public Long getObjId() {
-        return objId;
-    }
-
-    public void setObjId(Long objId) {
-        this.objId = objId;
-    }
-
-    public Integer getObjType() {
-        return objType;
-    }
-
-    public void setObjType(Integer objType) {
-        this.objType = objType;
-    }
 
     public Integer getEvnRate() {
         return evnRate;
@@ -85,5 +61,16 @@ public class UserEvaluationPVo extends ServiceAbstractVo {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEvaluationPVo{" +
+                "evnRate=" + evnRate +
+                ", priceRate=" + priceRate +
+                ", trafficRate=" + trafficRate +
+                ", comment='" + comment + '\'' +
+                ", tags=" + tags +
+                "} ";
     }
 }

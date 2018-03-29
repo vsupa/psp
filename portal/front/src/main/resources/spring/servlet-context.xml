@@ -52,15 +52,9 @@
 		<!-- path 对所有的请求拦截使用/**，对某个模块下的请求拦截使用：/myPath/* -->
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/show/**"/>
-			<mvc:exclude-mapping path="/home/**"/>
-			<mvc:exclude-mapping path="/wx/**"/>
-			<mvc:exclude-mapping path="/authorize/**"/>
-			<mvc:exclude-mapping path="/sys/**"/>
-			<mvc:exclude-mapping path="/prodCategory/**"/>
-			<mvc:exclude-mapping path="/prodComment/**"/>
-			<mvc:exclude-mapping path="/product/**"/>
 
+			<!-- 这里添加白名单：（不需要登录即可访问的资源） -->
+			<!--<mvc:exclude-mapping path="/show/**"/>-->
 
 			<bean class="com.baomidou.kisso.web.interceptor.SSOSpringInterceptor" />
 		</mvc:interceptor>
