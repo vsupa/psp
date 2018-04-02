@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<dubbo:application name="${dubbo.application.name}" owner="${dubbo.owner}" organization="${dubbo.organization}" />
+
+    <dubbo:registry protocol="zookeeper" address="${zookeeper.address}" file="${dubbo.registry.cache}"/>
+    
+    <dubbo:consumer timeout="${dubbo.service.timeout}" version="${dubbo.service.version}" retries="0"/>
+    
+	<dubbo:monitor protocol="${platform.dubbo.monitor}"/>
+    
+	<!--<dubbo:annotation package="com.scho"/> -->
+    <!-- 用dubbo协议在20880端口暴露服务 -->  
+	<dubbo:protocol name="dubbo" serialization="kryo" host="${dubbo.host}" payload="52428800"/>
+	
+	<!-- 班级任务新闻公告 -->
+	<dubbo:reference id="teacherAdminService" interface="com.scho.modules.trainingclass.spi.ITeacherAdminService" check="false"/>
+	<dubbo:reference id="trainingClassService" interface="com.scho.modules.trainingclass.spi.ITrainingClassService" check="false"/>
+	<dubbo:reference id="certificateService" interface="com.scho.modules.trainingclass.spi.ICertificateService" check="false"/>
+	<dubbo:reference id="courseItemService" interface="com.scho.modules.trainingclass.spi.ICourseItemService" check="false"/>
+	<dubbo:reference id="examService" interface="com.scho.modules.exam.spi.IExamService" check="false"/>
+	<dubbo:reference id="examActivityAdminService" interface="com.scho.modules.exam.spi.IExamActivityAdminService" check="false"/>
+	<dubbo:reference id="taskService" interface="com.scho.modules.task.spi.ITaskService" check="false" timeout="180000"/>
+	<dubbo:reference id="informationService" interface="com.scho.modules.task.spi.IInformationService" check="false"/>
+	<dubbo:reference id="examPaperClassServiceImpl" interface="com.scho.modules.exam.spi.IExamPaperClassService" check="false"/>
+	<dubbo:reference id="examPaperServiceImpl" interface="com.scho.modules.exam.spi.IExamPaperService" check="false"/>
+	<dubbo:reference id="examResultService" interface="com.scho.modules.exam.spi.IExamResultService" check="false"/>
+
+
+	<!-- 新智能班级 -->
+	<dubbo:reference id="classSchemeServiceImpl" interface="com.scho.modules.class2.spi.IClassSchemeService" check="false"/>
+	<dubbo:reference id="classDefineServiceImpl" interface="com.scho.modules.class2.spi.IClassDefineService" check="false"/>
+	<dubbo:reference id="classEventDefineServiceImpl" interface="com.scho.modules.class2.spi.IClassEventDefineService" check="false"/>
+	<dubbo:reference id="classUserServiceImpl" interface="com.scho.modules.class2.spi.IClassUserService" check="false"/>
+	<dubbo:reference id="classEventRefServiceImpl" interface="com.scho.modules.class2.spi.IClassEventRefService" check="false"/>
+	<dubbo:reference id="classRangeServiceImpl" interface="com.scho.modules.class2.spi.IClassRangeService" check="false"/>
+	<dubbo:reference id="classEventResourceServiceImpl" interface="com.scho.modules.class2.spi.IClassEventResourceService" check="false"/>
+	<dubbo:reference id="classReviewDefineServiceImpl" interface="com.scho.modules.class2.spi.IClassReviewDefineService" check="false"/>
+	<dubbo:reference id="classSignDefineServiceImpl" interface="com.scho.modules.class2.spi.IClassSignDefineService" check="false"/>
+	<dubbo:reference id="classSignMacServiceImpl" interface="com.scho.modules.class2.spi.IClassSignMacService" check="false"/>
+	<dubbo:reference id="classSettlementDefineServiceImpl" interface="com.scho.modules.class2.spi.IClassSettlementDefineService" check="false"/>
+	<dubbo:reference id="classExamDefineServiceImpl" interface="com.scho.modules.class2.spi.IClassExamDefineService" check="false"/>
+	<dubbo:reference id="classSiteLayoutDefineServiceImpl" interface="com.scho.modules.class2.spi.IClassSiteLayoutDefineService" check="false"/>
+	<dubbo:reference id="classEventResResultServiceImpl" interface="com.scho.modules.class2.spi.IClassEventResResultService" check="false"/>
+	<dubbo:reference id="classSignResultServiceImpl" interface="com.scho.modules.class2.spi.IClassSignResultService" check="false"/>
+	<dubbo:reference id="classMsgRecordServiceImpl" interface="com.scho.modules.class2.spi.IClassMsgRecordService" check="false"/>
+	<dubbo:reference id="classEventAwardRuleServiceImpl" interface="com.scho.modules.class2.spi.IClassEventAwardRuleService" check="false"/>
+	<dubbo:reference id="classResourceServiceImpl" interface="com.scho.modules.class2.spi.IClassResourceService" check="false"/>
+	<dubbo:reference id="classCourseDefineServiceImpl" interface="com.scho.modules.class2.spi.IClassCourseDefineService" check="false"/>
+	<dubbo:reference id="classEventResultServiceImpl" interface="com.scho.modules.class2.spi.IClassEventResultService" check="false"/>
+	<dubbo:reference id="classNoticeServiceImpl" interface="com.scho.modules.class2.spi.IClassNoticeService" check="false"/>
+
+	<!-- 课程 -->
+	<dubbo:reference id="basicCourseServiceImpl" interface="com.scho.modules.study.spi.IBasicCourseService" check="false" timeout="180000"/>
+	<dubbo:reference id="columnTypeServiceImpl" interface="com.scho.modules.study.spi.IColumnTypeService" check="false"/>
+	<dubbo:reference id="courseResourceServiceImpl" interface="com.scho.modules.study.spi.ICourseResourceService" check="false"/>
+	<dubbo:reference id="resourceTypeServiceImpl" interface="com.scho.modules.study.spi.IResourceTypeService" check="false"/>
+	<dubbo:reference id="topicalServiceImpl" interface="com.scho.modules.study.spi.ITopicalService" check="false"/>
+	<dubbo:reference id="courseUserServiceImpl" interface="com.scho.modules.study.spi.ICourseUserService" check="false"/>
+	<dubbo:reference id="courseRelatedServiceImpl" interface="com.scho.modules.study.spi.ICourseRelatedService" check="false"/>
+	<dubbo:reference id="newBasicCourseServiceImpl" interface="com.scho.modules.study.spi.INewBasicCourseService" check="false"/>
+	<dubbo:reference id="courseSectionServiceImpl" interface="com.scho.modules.study.spi.ICourseSectionService" check="false"/>
+	<dubbo:reference id="courseSectionItemServiceImpl" interface="com.scho.modules.study.spi.ICourseSectionItemService" check="false"/>
+
+	<dubbo:reference id="courseExamServiceImpl" interface="com.scho.modules.study.spi.ICourseExamService" check="false"/>
+	<dubbo:reference id="courseExamResultServiceImpl" interface="com.scho.modules.study.spi.ICourseExamResultService" check="false"/>
+
+	<dubbo:reference id="userCommentServiceImpl" interface="com.scho.modules.study.spi.IUserCommentService" check="false"/>
+
+	<!-- 能力分类 -->
+	<dubbo:reference id="competencyClassServiceImpl" interface="com.scho.modules.study.spi.ICompetencyClassService" check="false"/>
+	<dubbo:reference id="competencyServiceImpl" interface="com.scho.modules.study.spi.ICompetencyService" check="false"/>
+	<dubbo:reference id="productCompetencyClassRelServiceImpl" interface="com.scho.modules.study.spi.IProductCompetencyClassRelService" check="false"/>
+	<dubbo:reference id="objCompetencyRefServiceImpl" interface="com.scho.modules.study.spi.IObjCompetencyRefService" check="false"/>
+
+	<!-- 图标管理 -->
+	<dubbo:reference id="iconLibraryServiceImpl" interface="com.scho.modules.study.spi.IIconLibraryService" check="false"/>
+
+	<!-- 主题  -->
+	<dubbo:reference id="topicalSeriesServiceImpl" interface="com.scho.modules.study.spi.ITopicalSeriesService" check="false"/>
+	<dubbo:reference id="topicalCourseServiceImpl" interface="com.scho.modules.study.spi.ITopicalCourseService" check="false"/>
+	<dubbo:reference id="topicalStageServiceImpl" interface="com.scho.modules.study.spi.ITopicalStageService" check="false"/>
+	<dubbo:reference id="topicalStageCourseServiceImpl" interface="com.scho.modules.study.spi.ITopicalStageCourseService" check="false"/>
+
+	<dubbo:reference id="personGroupServiceImpl" interface="com.scho.modules.study.spi.IPersonGroupService" check="false"/>
+	
+	<!-- 活动 -->
+	<dubbo:reference id="sysActivityServiceImpl" interface="com.scho.modules.study.spi.ISysActivityService" check="false"/>
+
+    <!-- 角色与权限管理 -->
+    <dubbo:reference id="roleAndMenuServiceImpl"     interface="com.scho.modules.permission.adminspi.IRoleAndMenuService" check="false"/>
+    <dubbo:reference id="adminAuthAssignServiceImpl" interface="com.scho.modules.permission.adminspi.IAdminAuthAssignService" check="false"/>
+    <dubbo:reference id="adminAuthQueryServiceImpl"  interface="com.scho.modules.permission.adminspi.IAdminAuthQueryService" check="false"/>
+    
+    <!-- 用户与机构 -->
+    <dubbo:reference id="userInfoQueryServiceImpl" interface="com.scho.modules.user.adminspi.IUserInfoQueryService" check="false"/>
+    <dubbo:reference id="orgStaffQueryServiceImpl" interface="com.scho.modules.org.adminspi.IOrgStaffQueryService" check="false"/>
+    <dubbo:reference id="orgStaffServiceImpl"      interface="com.scho.modules.org.adminspi.IOrgStaffService" check="false" timeout="600000" />
+    <dubbo:reference id="orgDeptServiceImpl"       interface="com.scho.modules.org.adminspi.IOrgDeptService"  check="false" timeout="60000" />
+    <dubbo:reference id="orgDeptClassServiceImpl"       interface="com.scho.modules.org.adminspi.IOrgDeptClassService"  check="false" timeout="60000" />
+	<dubbo:reference id="orgServiceImpl"           interface="com.scho.modules.org.adminspi.IOrgService" check="false" timeout="600000"/>
+	<dubbo:reference interface="com.scho.modules.org.adminspi.IOrgDevAccountService" id="orgDevAccountServiceImpl" check="false" />
+	<dubbo:reference interface="com.scho.modules.user.spi.IUserPositionService" id="userPositionServiceImpl" check="false" />
+
+	<dubbo:reference id="orgMenuMatchServiceImpl"	interface="com.scho.modules.org.adminspi.IOrgMenuMatchService" check="false"/>
+
+    <dubbo:reference id="organizationService" 	interface="com.scho.modules.org.spi.IOrganizationService" check="false"/>
+    <dubbo:reference id="adminServiceImpl"       interface="com.scho.modules.user.adminspi.IAdminService" check="false"/>
+    <dubbo:reference id="contentAuthServiceImpl"       interface="com.scho.modules.cm.spi.IContentAuthService" check="false"/>
+    
+    <dubbo:reference id="appLoginSessionServiceImpl"   interface="com.scho.modules.user.adminspi.IAppLoginSessionService" check="false"/>
+    
+	<!-- 人群管理 -->
+    <dubbo:reference id="personGroupMServiceImpl"       interface="com.scho.modules.user.spi.IPersonGroupMService" check="false"/>
+
+    <!-- 圈子 -->
+    <dubbo:reference id="discussCategoryServiceImpl"  interface="com.scho.modules.community.adminspi.IDiscussCategoryMService" check="false"/>
+    <dubbo:reference id="qnaManageServiceImpl"  interface="com.scho.modules.community.adminspi.IQnaManageMService" check="false"/>
+    <dubbo:reference id="qnaSubjectService"  interface="com.scho.modules.community.spi.IQnaSubjectService" check="false"/>
+	<dubbo:reference id="discussGroupMServiceImpl"  interface="com.scho.modules.community.adminspi.IDiscussGroupMService" check="false"/>
+	<dubbo:reference id="grpMemberMServiceImpl"  interface="com.scho.modules.community.adminspi.IGrpMemberMService" check="false"/>
+	<dubbo:reference id="discussSubjectMServiceImpl"  interface="com.scho.modules.community.adminspi.IDiscussSubjectMService" check="false"/>
+	<dubbo:reference id="discussCaseMServiceImpl"  interface="com.scho.modules.community.adminspi.IDiscussCaseMService" check="false"/>
+	<dubbo:reference id="discussCommentMServiceImpl"  interface="com.scho.modules.community.adminspi.IDiscussCommentMService" check="false"/>
+	<dubbo:reference id="discussSubjectInviteServiceImpl" interface="com.scho.modules.community.spi.IDiscussSubjectInviteService" check="false"/>
+	<dubbo:reference id="discussCommentDisguiserServiceImpl" interface="com.scho.modules.community.adminspi.IDiscussCommentDisguiserService" check="false"/>
+	<dubbo:reference id="discussGroupAttributionServiceImpl" interface="com.scho.modules.community.adminspi.IDiscussGroupAttributionService" check="false"/>
+	
+	<!-- 闯关 -->
+	<dubbo:reference id="questGameService"  	interface="com.scho.modules.study.spi.IQuestGameService" check="false"/>
+	<dubbo:reference id="questService"  		interface="com.scho.modules.study.spi.IQuestService" check="false"/>
+	<dubbo:reference id="questGameRuleService"  	interface="com.scho.modules.study.spi.IQuestGameRuleService" check="false"/>
+	<dubbo:reference id="questGameRuleRelateService"  	interface="com.scho.modules.study.spi.IQuestGameRuleRelateService" check="false"/>
+	<dubbo:reference id="questContentService"  	interface="com.scho.modules.study.spi.IQuestContentService" check="false"/>
+	<dubbo:reference id="questResultService"  	interface="com.scho.modules.study.spi.IQuestResultService" check="false"/>
+
+	<!-- 统计报表 -->
+	<dubbo:reference id="centerStaticsService" interface="com.scho.modules.statics.spi.ICenterStaticsService" check="false" timeout="120000"/><!-- 核心数据统计 -->
+	<dubbo:reference id="courseStaticsService" interface="com.scho.modules.statics.spi.ICourseStaticsService" check="false" timeout="120000"/><!-- 课程学习统计 -->
+	<dubbo:reference id="courseStudyDetailService" interface="com.scho.modules.statics.spi.ICourseStudyDetailService" check="false" timeout="120000"/><!-- 课程详情学习统计 -->
+	<dubbo:reference id="gameStudyDetailService" interface="com.scho.modules.statics.spi.IGameStudyDetailService" check="false" timeout="120000"/><!-- 闯关详情学习统计 -->
+	<dubbo:reference id="commentDetailStatisticsService" interface="com.scho.modules.statics.spi.ICommentDetailStatisticsService" check="false" timeout="120000"/><!-- 帖子详情学习统计 -->
+	<dubbo:reference id="integralDetailStatisticsService" interface="com.scho.modules.statics.spi.IIntegralDetailStatisticsService" check="false" timeout="120000"/><!-- 积分详情学习统计 -->
+
+	<!-- 统计二期 -->
+	<dubbo:reference id="gameStudyStaticsService" interface="com.scho.modules.staticsv2.spi.IGameStudyStaticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="courseStudyStaticsService" interface="com.scho.modules.staticsv2.spi.ICourseStudyStaticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="userActiveRateStaticsService" interface="com.scho.modules.staticsv2.spi.IUserActiveRateStaticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="userOnlineRateStaticsService" interface="com.scho.modules.staticsv2.spi.IUserOnlineRateStaticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="userAliveRateStaticsService" interface="com.scho.modules.staticsv2.spi.IUserAliveRateStaticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="userOnlineTimeStaticsService" interface="com.scho.modules.staticsv2.spi.IUserOnlineTimeStaticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="userIntegralStaticsService" interface="com.scho.modules.staticsv2.spi.IUserIntegralStaticsService" check="false" timeout="120000"/>
+
+	<!-- 圈子统计 -->
+	<dubbo:reference id="communityStatisticsService" interface="com.scho.modules.statics.spi.ICommunityStatisticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="topicalStatisticsServiceImpl" interface="com.scho.modules.statisticsNew.spi.ITopicalStatisticsService" check="false" timeout="120000"/>
+
+	<dubbo:reference id="gameStatisticsServiceImpl" interface="com.scho.modules.statisticsNew.spi.IGameStatisticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="studyStatisticsServiceImpl" interface="com.scho.modules.statisticsNew.spi.IStudyStatisticsService" check="false" timeout="240000"/>
+	<dubbo:reference id="kernelStatisticsServiceImpl" interface="com.scho.modules.statisticsNew.spi.IKernelStatisticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="courseStatisticsServiceImpl" interface="com.scho.modules.statisticsNew.spi.ICourseStatisticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="clickStatisticsServiceImpl" interface="com.scho.modules.statisticsNew.spi.IClickStatisticsService" check="false" timeout="120000"/>
+	<dubbo:reference id="circleStatisticsServiceImpl" interface="com.scho.modules.statisticsNew.spi.ICircleStatisticsService" check="false" timeout="120000"/>
+	<!--  异步生成统计报表 -->
+	<dubbo:reference id="asyncExportFileRecordServiceImpl" interface="com.scho.modules.statisticsNew.spi.IAsyncExportFileRecordService" check="false" timeout="120000"/>
+
+
+	<dubbo:reference id="examActivityService"  interface="com.scho.modules.exam.spi.IExamActivityService" check="false"/>
+
+	<!-- 系统公用服务 -->
+	<dubbo:reference id="usageHistoryService" interface="com.scho.modules.usagehistory.spi.IUsageHistoryService" check="false"/>
+	
+	<!-- 运营管理 -->
+	<dubbo:reference id="serviceManagementImpl" interface="com.scho.modules.svcconf.spi.IServiceManagementService" check="false"/>
+	<dubbo:reference id="integralManageServiceImpl" interface="com.scho.modules.integral.spi.IIntegralManageService" check="false"/>
+	<dubbo:reference id="integralItemServiceImpl" interface="com.scho.modules.integral.spi.IIntegralItemService" check="false"/>
+	<dubbo:reference id="integralRankServiceImpl" interface="com.scho.modules.integral.spi.IIntegralRankService" check="false"/>
+	<dubbo:reference id="integralRewardServiceImpl" interface="com.scho.modules.integral.spi.IIntegralRewardService" check="false"/>
+	<dubbo:reference id="integralAdjustServiceImpl" interface="com.scho.modules.integral.spi.IIntegralAdjustService" check="false"/>
+	<dubbo:reference id="integralAdjustItemServiceImpl" interface="com.scho.modules.integral.spi.IIntegralAdjustItemService" check="false"/>
+	<dubbo:reference id="quicklyAddOrgServiceImpl" interface="com.scho.modules.org.adminspi.IQuicklyAddOrgService" check="false"/>
+	<dubbo:reference id="organizationApplyServiceImpl" interface="com.scho.modules.org.adminspi.IOrganizationApplyService" check="false"/>
+	<dubbo:reference id="userSelfRegistrateServiceImpl" interface="com.scho.modules.user.spi.IUserSelfRegistrateService" check="false"/>
+
+	<!-- 内容包管理 -->
+	<dubbo:reference id="contentPackageService" interface="com.scho.modules.study.spi.IContentPackageService" check="false"/>
+	<dubbo:reference id="contentPackageItemService" interface="com.scho.modules.study.spi.IContentPackageItemService" check="false"/>
+	
+	<!-- 系统服务 -->
+	<dubbo:reference id="systemServiceImpl" interface="com.scho.modules.system.spi.ISystemService" check="false"/>
+	<dubbo:reference id="sysPlatformConfigServiceImpl" interface="com.scho.modules.system.spi.ISysPlatformConfigService" check="false" />
+	
+
+	<dubbo:reference id="objPersonGroupRefService" interface="com.scho.modules.study.spi.IObjPersonGroupRefService" check="false"/>
+	
+	<!-- 字典服务 -->
+	<dubbo:reference id="sysDictServiceImpl" interface="com.scho.modules.system.spi.ISysDictService" check="false"/>
+	<dubbo:reference id="sysDictTypeServiceImpl" interface="com.scho.modules.system.spi.ISysDictTypeService" check="false"/>
+	
+	<!-- 消息服务 -->
+	<dubbo:reference id="messageNotificationMServiceImpl" interface="com.scho.modules.message.adminspi.IMessageNotificationMService" check="false"/>
+	<dubbo:reference id="messageTemplateMServiceImpl" interface="com.scho.modules.message.adminspi.IMessageTemplateMService" check="false" timeout="60000"/>
+	<dubbo:reference id="notificationProcServiceImpl" interface="com.scho.modules.message.adminspi.INotificationProcService" check="false"/>
+	<dubbo:reference id="sysMsgConfigServiceImpl" interface="com.scho.modules.message.adminspi.ISysMsgConfigService" check="false"/>
+	<dubbo:reference id="messagePushManagerServiceImpl" interface="com.scho.modules.message.spi.IMessagePushManagerService" check="false"/>	
+	<dubbo:reference id="messageTemplateUserConfigService" interface="com.scho.modules.message.spi.IMessageTemplateUserConfigService" check="false"/> 
+	<dubbo:reference id="messageThirdRecordService" interface="com.scho.modules.message.spi.IMessageThirdRecordService" check="false"/> 
+	
+
+	<!--对接新消息推送平台-->
+	<dubbo:reference id="schoMessageServiceImpl" interface="com.scho.modules.message.spi.ISchoMessageService"  check="false" />
+
+	<!-- 个性化设置 -->
+	<dubbo:reference id="orgAppSpecialConfigServiceImpl" interface="com.scho.modules.special.adminspi.IOrgAppSpecialConfigService" check="false"/>
+	<dubbo:reference id="orgAppSpecialAttrServiceImpl" interface="com.scho.modules.special.adminspi.IOrgAppSpecialAttrService" check="false"/>
+
+	<dubbo:reference id="basicAttributeInstServiceImpl" interface="com.scho.modules.svcconf.adminspi.IBasicAttributeInstService" check="false"/>
+	<dubbo:reference id="basicAttributeServiceImpl" interface="com.scho.modules.svcconf.adminspi.IBasicAttributeService" check="false"/>
+	<dubbo:reference id="basicModuleInstServiceImpl" interface="com.scho.modules.svcconf.adminspi.IBasicModuleInstService" check="false"/>
+	<dubbo:reference id="basicModulePageInstServiceImpl" interface="com.scho.modules.svcconf.adminspi.IBasicModulePageInstService" check="false"/>
+	<dubbo:reference id="basicModulePageItemInstServiceImpl" interface="com.scho.modules.svcconf.adminspi.IBasicModulePageItemInstService" check="false"/>
+	<dubbo:reference id="basicModulePageItemServiceImpl" interface="com.scho.modules.svcconf.adminspi.IBasicModulePageItemService" check="false"/>
+	<dubbo:reference id="basicModulePageServiceImpl" interface="com.scho.modules.svcconf.adminspi.IBasicModulePageService" check="false"/>
+	<dubbo:reference id="basicModuleServiceImpl" interface="com.scho.modules.svcconf.adminspi.IBasicModuleService" check="false"/>
+	<dubbo:reference id="aboutUsServiceImpl" interface="com.scho.modules.svcconf.adminspi.IAboutUsService" check="false"/>
+
+
+	<!-- 企业同步配置 -->
+	<dubbo:reference id="syncContentServiceImpl"  		interface="com.scho.modules.contentSync.spi.ISyncContentService" check="false"/>
+	<dubbo:reference id="syncAttributeServiceImpl"  	interface="com.scho.modules.contentSync.spi.ISyncAttributeService" check="false"/>
+	<dubbo:reference id="syncTaskServiceImpl"  			interface="com.scho.modules.contentSync.spi.ISyncTaskService" check="false"/>
+	<dubbo:reference id="syncTaskTriggerManagerImpl"  	interface="com.scho.modules.contentSync.manager.ISyncTaskTriggerManager" check="false"/>
+
+	<!--  金币系统 -->
+	<dubbo:reference id="virtualCoinDefineServiceImpl" interface="com.scho.modules.coin.adminspi.IVirtualCoinDefineService" check="false"/>
+	<dubbo:reference id="virtualCoinRuleRelateServiceImpl" interface="com.scho.modules.coin.adminspi.IVirtualCoinRuleRelateService" check="false"/>
+	<dubbo:reference id="userCoinServiceImpl" interface="com.scho.modules.coin.adminspi.IUserCoinService" check="false"/>
+	<dubbo:reference id="coinGainServiceImpl" interface="com.scho.modules.coin.adminspi.ICoinGainService" check="false"/>
+	<dubbo:reference id="coinBuyServiceImpl" interface="com.scho.modules.coin.adminspi.ICoinBuyService" check="false"/>
+	<dubbo:reference id="coinExchangeServiceImpl" interface="com.scho.modules.coin.adminspi.ICoinExchangeService" check="false"/>
+	<dubbo:reference id="shopCenterDefineServiceImpl" interface="com.scho.modules.coin.adminspi.IShopCenterDefineService" check="false"/>
+
+
+	<!-- 活动管理 -->
+	<dubbo:reference id="activityServiceImpl" interface="com.scho.modules.activity.adminspi.IActivityService" check="false"/>
+	<dubbo:reference id="activityRelateServiceImpl" interface="com.scho.modules.activity.adminspi.IActivityRelateService" check="false"/>
+	<dubbo:reference id="activityAwardServiceImpl" interface="com.scho.modules.activity.adminspi.IActivityAwardService" check="false"/>
+
+	<!-- 服务插件 -->
+	<dubbo:reference id="servicePluginServiceImpl" interface="com.scho.modules.plugin.adminspi.IServicePluginService" check="false"/>
+
+	<!-- 渠道 -->
+	<dubbo:reference id="channelPartnerServiceImpl" interface="com.scho.modules.org.adminspi.IChannelPartnerService" check="false"/>
+
+	<!-- 企业服务开通定时同步接口 -->
+	<dubbo:reference id="serviceSyncSchedule" interface="com.scho.modules.schedule.IServiceSyncSchedule" check="false"/>
+	<dubbo:reference id="serviceSyncSCSchedule" interface="com.scho.modules.schedule.IServiceSyncSCSchedule" check="false"/>
+
+	<!-- 系统数据同步 -->
+	<dubbo:reference id="orgSyncTokenServiceImpl" interface="com.scho.modules.org.adminspi.IOrgSyncTokenService" check="false" />
+	<dubbo:reference id="orgSyncNodeServiceImpl" interface="com.scho.modules.org.adminspi.IOrgSyncNodeService" check="false" />
+	<!-- Q&A 管理-->
+	<dubbo:reference id="qnaAdminService" interface="com.scho.modules.qna.spi.IQnaAdminService" check="false" />
+	<!-- 自定义表单 -->
+	<dubbo:reference id="formDesignAdminService" interface="com.scho.modules.formdesign.spi.IFormDesignAdminService" check="false" />
+	<!-- 草根明星 -->
+	<dubbo:reference id="basicCourseMaterialMServiceImpl" interface="com.scho.modules.celebrity.adminspi.IBasicCourseMaterialMService" check="false" />
+	<dubbo:reference id="materialCelebrityMServiceImpl" interface="com.scho.modules.celebrity.adminspi.IMaterialCelebrityMService" check="false"/>
+	<dubbo:reference interface="com.scho.modules.celebrity.adminspi.IMaterialClassifyMService" id="materialClassifyMServiceImpl" check="false"/>
+
+ 	<!-- 测评相关 -->
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqAdminService" id="cpCpqAdminService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqAdviseService" id="cpCpqAdviseService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqComResultService" id="cpCpqComResultService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqComService" id="cpCpqComService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqElementResultService" id="cpCpqElementResultService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqElementService" id="cpCpqElementService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqExamRelationResultService" id="cpCpqExamRelationResultService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqExamRelationService" id="cpCpqExamRelationService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqLevelItemService" id="cpCpqLevelItemService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqLevelService" id="cpCpqLevelService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqModelQuestionRelService" id="cpCpqModelQuestionRelService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqModelResultService" id="cpCpqModelResultService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqModelService" id="cpCpqModelService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqResultService" id="cpCpqResultService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqRuleItemService" id="cpCpqRuleItemService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqRuleService" id="cpCpqRuleService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqService" id="cpCpqService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqGroupRelationService" id="cpCpqGroupRelationService" check="false"/>
+ 	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqClassService" id="cpCpqClassService" check="false"/>
+	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqComOptionRelService" id="cpCpqComOptionRelService" check="false"/>
+	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqExamPaperQuestionsService" id="cpCpqExamPaperQuestionsService" check="false"/>
+	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqStatisticsService" id="cpCpqStatisticsService" check="false"/>
+	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqOrgAttributeService" id="cpCpqOrgAttributeServiceImpl" check="false"/>
+	<dubbo:reference interface="com.scho.modules.cpq.spi.ICpCpqStatisticsAdminService" id="cpCpqStatisticsAdminService" check="false"/>
+
+ 	<!-- 个人中心 -->
+	<dubbo:reference interface="com.scho.modules.user.spi.IUserService" id="userService" check="false"/>
+
+	<!-- 微信相关 -->
+	<dubbo:reference id="wechatAdminServiceImpl"  interface="com.scho.modules.wx.spi.IWechatAdminService" check="false"/>
+
+	<!-- 门店事项 -->
+	<dubbo:reference id="taskEventService"  interface="com.scho.modules.task.spi.ITaskEventService" check="false"/>
+	<dubbo:reference id="taskEventHistoryService"  interface="com.scho.modules.task.spi.ITaskEventHistoryService" check="false"/>
+	<dubbo:reference id="taskSignDefineService"  interface="com.scho.modules.task.spi.ITaskSignDefineService" check="false"/>
+	<dubbo:reference id="taskSignHistoryService"  interface="com.scho.modules.task.spi.ITaskSignHistoryService" check="false"/>
+	<dubbo:reference id="taskSignUserRelationService"  interface="com.scho.modules.task.spi.ITaskSignUserRelationService" check="false"/>
+	<dubbo:reference id="taskItemUserHistoryService"  interface="com.scho.modules.task.spi.ITaskItemUserHistoryService" check="false"/>
+	<dubbo:reference id="taskItemFeedbackRelationService"  interface="com.scho.modules.task.spi.ITaskItemFeedbackRelationService" check="false"/>
+	<dubbo:reference id="taskItemUserService"  interface="com.scho.modules.task.spi.ITaskItemUserService" check="false"/>
+	<dubbo:reference id="taskExtendsService" interface="com.scho.modules.task.spi.ITaskExtendsService" check="false"/>
+
+	<!--redis-->
+	<dubbo:reference id="redisServiceImpl" interface="com.scho.modules.data.spi.IRedisService" check="false" />
+
+	<!--直播 -->
+	<dubbo:reference id="liveWebCastServiceImpl" interface="com.scho.modules.live.adminspi.ILiveWebCastService" check="false" />
+	<dubbo:reference id="liveUserServiceImpl" interface="com.scho.modules.live.adminspi.ILiveUserService" check="false" />
+	<dubbo:reference id="liveResourceServiceImpl" interface="com.scho.modules.live.adminspi.ILiveResourceService" check="false" />
+	<dubbo:reference id="liveWatchHistoryServiceImpl" interface="com.scho.modules.live.adminspi.ILiveWatchHistoryService" check="false" />
+	<dubbo:reference id="liveMessageFrontService" interface="com.scho.modules.live.spi.ILiveMessageFrontService" check="false" />
+	<dubbo:reference id="liveChatRoomServiceImpl" interface="com.scho.modules.live.spi.ILiveChatRoomService" check="false" />
+	<dubbo:reference id="liveStatisticsServiceImpl" interface="com.scho.modules.live.adminspi.ILiveStatisticsService" check="false" />
+	<!--聊天室-->
+	<dubbo:reference id="chatRoomServiceImpl" interface="com.scho.modules.chat.adminspi.IChatRoomService" check="false" />
+
+	<!--考试随机抽题相关-->
+	<dubbo:reference id="examExtractRuleServiceImpl" interface="com.scho.modules.exam.spi.IExamExtractRuleService" check="false"/>
+	<dubbo:reference id="examExtractRuleGroupServiceImpl" interface="com.scho.modules.exam.spi.IExamExtractRuleGroupService" check="false"/>
+	<dubbo:reference id="examPaperExtractRuleServiceImpl" interface="com.scho.modules.exam.spi.IExamPaperExtractRuleService" check="false"/>
+	<dubbo:reference id="examPaperExtractRuleDefineServiceImpl" interface="com.scho.modules.exam.spi.IExamPaperExtractRuleDefineService" check="false"/>
+	<dubbo:reference id="examExtractUserRecordServiceImpl" interface="com.scho.modules.exam.spi.IExamExtractUserRecordService" check="false"/>
+
+	<!--admin log-->
+	<dubbo:reference id="adminActionLogServiceImpl" interface="com.scho.modules.data.spi.IAdminActionLogService" check="false"/>
+
+	<dubbo:reference id="sensitiveWordServiceImpl" interface="com.scho.modules.chat.spi.ISensitiveWordService" check="false"/>
+
+	<!--考试题干-->
+	<dubbo:reference id="examQuestionStemServiceImpl" interface="com.scho.modules.exam.spi.IExamQuestionStemService" check="false"/>
+	<dubbo:reference id="examQuestionStemRelationServiceImpl" interface="com.scho.modules.exam.spi.IExamQuestionStemRelationService" check="false"/>
+	
+	<!-- 广汽班级反馈记录表 -->
+	<dubbo:reference id="sysPlatformSyncRegeditService" interface="com.scho.modules.system.spi.ISysPlatformSyncRegeditService" check="false"/>
+	<!-- 任务群组关系管理 -->
+	<dubbo:reference id="taskObjGroupService" interface="com.scho.modules.task.spi.ITaskObjGroupService" check="false"/> 
+	
+	<!--数据中心-->
+	<import resource="dubbo/datacenter.xml"/>
+
+</beans>

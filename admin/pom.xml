@@ -14,7 +14,22 @@
 	<name>admin</name>
 
     <dependencies>
+        <dependency>
+            <groupId>com.vsupa.psp</groupId>
+            <artifactId>common-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vsupa.psp</groupId>
+            <artifactId>park-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.vsupa.ecsp</groupId>
+            <artifactId>user-api</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

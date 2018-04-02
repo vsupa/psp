@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- scho流媒体平台客户端 -->
+    <bean id="schoStreamingClient" class="com.scho.modules.client.streaming.SchoStreamingClient">
+        <constructor-arg name="appKey" value="${scho.streaming.client.appKey}" />
+        <constructor-arg name="appSecret" value="${scho.streaming.client.appSecret}" />
+        <!--有效时间(单位秒)-->
+        <constructor-arg name="ttlInSec" value="${scho.streaming.client.ttlInSec}" />
+    </bean>
+
+    <!--初始化后台操作日志记录工具，默认开启日志记录-->
+    <bean id="adminActionLogComponent" class="com.scho.base.filter.AdminActionLogComponent">
+        <constructor-arg name="adminLoggingJmsTemplate" ref="adminLoggingJmsTemplate"/>
+        <constructor-arg name="flag" type="java.lang.Boolean" value="true"/>
+    </bean>
+</beans>
+

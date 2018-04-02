@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- appender -->
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <!--<withJansi>true</withJansi>-->
+        <encoder>
+            <pattern>[%level] [%date] [%thread] %logger [%file:%line] %n- %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- fileAppender -->
+    <appender name="commonAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>logs/admin/mybatis.log</File>
+        <encoder>
+            <pattern>[%level] [%date] [%thread] %logger [%file:%line] - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/admin/mybatis.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    
+    <!-- application appender -->
+    <appender name="schoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>logs/admin/admin.log</File>
+        <encoder>
+            <pattern>[%level] [%date] [%thread] %logger [%file:%line] - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/admin/admin.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    
+    <!-- dubbo appender -->
+    <appender name="dubboAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>logs/admin/dubbo.log</File>
+        <encoder>
+            <pattern>[%level] [%date] [%thread] %logger [%file:%line] - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/admin/dubbo.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <!-- logger -->
+        
+    <logger name="com.scho" level="debug">  
+        <appender-ref ref="schoAppender" />  
+    </logger> 
+    
+    <!-- dubbo日志 -->
+    <logger name="com.alibaba.dubbo" level="error">  
+        <appender-ref ref="dubboAppender" />
+ 	</logger>
+ 	
+ 	<!-- mybatis日志 -->
+ 	<logger name="org.apache.ibatis" level="error">  
+        <appender-ref ref="commonAppender" />
+ 	</logger>
+
+    <!-- activeMq日志 -->
+    <logger name="org.apache.activemq.transport.AbstractInactivityMonitor" level="error">
+        <appender-ref ref="activeMqAppender" />
+    </logger>
+
+    <!-- root -->
+    <root level="debug">
+        <appender-ref ref="consoleAppender" />
+    </root>
+</configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--数据中心-统计-->
+    <dubbo:reference id="dcrActivationRateServiceImpl" interface="com.scho.modules.datacenter.spi.IDcrActivationRateService" check="false"/>
+    <dubbo:reference id="dcrOnlineRateServiceImpl" interface="com.scho.modules.datacenter.spi.IDcrOnlineRateService" check="false"/>
+    <dubbo:reference id="dcrOnlineTimeServiceImpl" interface="com.scho.modules.datacenter.spi.IDcrOnlineTimeService" check="false"/>
+    <dubbo:reference id="dcrIntegralStatisticsServiceImpl" interface="com.scho.modules.datacenter.spi.IDcrIntegralStatisticsService" check="false"/>
+    <dubbo:reference id="dcrCourseStudyStatisticsServiceImpl" interface="com.scho.modules.datacenter.spi.IDcrCourseStudyStatisticsService" check="false"/>
+    <dubbo:reference id="dcrCourseStatisticsServiceImpl" interface="com.scho.modules.datacenter.spi.IDcrCourseStatisticsService" check="false"/>
+    <dubbo:reference id="dcrGameStatisticsServiceImpl" interface="com.scho.modules.datacenter.spi.IDcrGameStatisticsService" check="false"/>
+    <dubbo:reference id="dcrAsyncExportFileRecordServiceImpl" interface="com.scho.modules.datacenter.spi.IDcrAsyncExportFileRecordService" check="false"/>
+
+</beans>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:util="http://www.springframework.org/schema/util"
+		xmlns:c='http://www.springframework.org/schema/c'
+		xmlns:cache="http://www.springframework.org/schema/cache"
+		xmlns="http://www.springframework.org/schema/beans"
+		
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context-3.0.xsd
+							http://www.springframework.org/schema/cache
+					      	http://www.springframework.org/schema/cache/spring-cache.xsd
+					 		http://www.springframework.org/schema/util
+							http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
+		<property name="connectionFactory">
+			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+				<property name="brokerURL">
+					<value>${platform.activemq.brokerUrl}</value>
+				</property>
+			</bean>
+		</property>
+		<property name="maxConnections" value="100" />
+	</bean>
+
+	<bean id="basicModuleDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="${activemq.basicModuleQueue}"></constructor-arg>
+	</bean>
+	
+	<bean id="basicModuleJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<ref local="jmsFactory" />
+		</property>
+		<property name="defaultDestination" ref="basicModuleDestination" />
+	</bean>
+	
+	<bean id="asyncExportFileQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="${activemq.asyncExportFileQueue}"></constructor-arg>
+	</bean>
+
+	<bean id="asyncExportFileJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<ref local="jmsFactory" />
+		</property>
+		<property name="defaultDestination" ref="asyncExportFileQueue" />
+	</bean>
+
+	<bean id="basicCourseStatisticsQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="${activemq.basicCourseStatisticsQueue}"></constructor-arg>
+	</bean>
+
+	<bean id="basicCourseStatisticsJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<ref local="jmsFactory" />
+		</property>
+		<property name="defaultDestination" ref="basicCourseStatisticsQueue" />
+	</bean>
+
+	<!--admin message queue -->
+	<bean id="adminMessageQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="${activemq.adminMessageQueue}" />
+	</bean>
+
+	<bean id="adminMessageListener" class="com.scho.modules.admin.controller.message.listener.AdminMessageListener"/>
+
+	<bean id="adminMessageContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="jmsFactory"></property>
+		<property name="destination" ref="adminMessageQueue"></property>
+		<property name="messageListener" ref="adminMessageListener"></property>
+		<property name="concurrency" value="3"></property>
+		<!--<property name="maxConcurrentConsumers" value="5"></property>-->
+	</bean>
+
+	<bean id="adminMessageJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<ref local="jmsFactory" />
+		</property>
+		<property name="defaultDestination" ref="adminMessageQueue" />
+	</bean>
+
+
+
+	<!--取消通知任务-->
+	<bean id="cancelMessageTaskQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="${activemq.cancelMessageTaskQueue}" />
+	</bean>
+
+	<bean id="cancelMessageTaskJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<ref local="jmsFactory" />
+		</property>
+		<property name="defaultDestination" ref="cancelMessageTaskQueue" />
+	</bean>
+
+	<!--admin operation log queue -->
+	<bean id="adminLoggingQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="${activemq.adminLoggingQueue}" />
+	</bean>
+
+	<bean id="adminLoggingJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<ref local="jmsFactory" />
+		</property>
+		<property name="defaultDestination" ref="adminLoggingQueue" />
+	</bean>
+
+	<!--mq keep alive-->
+	<bean id="keepAliveQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="${activemq.keepAliveQueue}" />
+	</bean>
+
+	<bean id="keepAliveListener" class="com.scho.modules.admin.controller.mq.listener.KeepAliveListener"/>
+
+	<bean id="keepAliveContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="jmsFactory"></property>
+		<property name="destination" ref="keepAliveQueue"></property>
+		<property name="messageListener" ref="keepAliveListener"></property>
+		<property name="concurrency" value="1"></property>
+		<!--<property name="maxConcurrentConsumers" value="5"></property>-->
+	</bean>
+
+	<bean id="keepAliveJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<ref local="jmsFactory" />
+		</property>
+		<property name="defaultDestination" ref="keepAliveQueue" />
+	</bean>
+
+
+	<!--数据中心-统计报表-异步导出-->
+	<bean id="dcrAsyncExportQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="${activemq.dcrAsyncExportQueue}"></constructor-arg>
+	</bean>
+
+	<bean id="dcrAsyncExportJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<ref local="jmsFactory" />
+		</property>
+		<property name="defaultDestination" ref="dcrAsyncExportQueue" />
+	</bean>
+
+</beans>
